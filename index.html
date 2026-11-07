@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f8fb" />
+    <meta
+      name="description"
+      content="인천항 검역 시스템 — 외래종 위험도와 공컨테이너 물동량을 바탕으로 한 검역 자원 배분 시나리오"
+    />
+    <title>인천항 검역 시스템</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="인천항 검역 시스템 첫 화면">
+          <img src="assets/incheon_port_logo.png" alt="인천항만공사 로고" />
+          <span class="brand-divider" aria-hidden="true"></span>
+          <span class="brand-title">인천항 검역 시스템</span>
+        </a>
+
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          <span class="sr-only">메뉴 열기</span>
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="primary-nav" id="primary-nav" aria-label="주요 메뉴">
+          <div class="nav-item">
+            <button class="nav-trigger" type="button" aria-expanded="false">
+              항만 정보 <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu">
+              <a href="#ports">교역항</a>
+              <a href="#port-risk">항만별 위험도</a>
+              <a href="#risk-criteria">위험도 설정 기준</a>
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <button class="nav-trigger" type="button" aria-expanded="false">
+              외래종 정보 <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu">
+              <a href="#species">외래종 종류</a>
+              <a href="#species-risk">외래종별 위험도</a>
+              <a href="#risk-criteria">위험도 설정 기준</a>
+            </div>
+          </div>
+
+          <div class="nav-item nav-item--reserved">
+            <button class="nav-trigger nav-trigger--reserved" type="button" aria-expanded="false" aria-label="추가 메뉴">
+              <span class="reserved-mark" aria-hidden="true"></span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu--reserved" aria-label="추가 메뉴 자리">
+              <span class="dropdown-skeleton"></span>
+              <span class="dropdown-skeleton"></span>
+              <span class="dropdown-skeleton"></span>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero section-wrap" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> PORT BIOSECURITY · DECISION SUPPORT</div>
+          <h1 id="hero-title">인천항 검역 시스템</h1>
+          <p class="hero-description">
+            공컨테이너 물동량과 외래종 위험도를 바탕으로<br class="desktop-break" />
+            항만별 검역 자원 배분 시나리오를 비교합니다.
+          </p>
+          <div class="hero-meta">
+            <span class="case-badge"><span class="case-dot"></span> 분석 사례</span>
+            <span class="hero-meta-text">2021년 5월</span>
+            <span class="meta-divider" aria-hidden="true"></span>
+            <span class="hero-meta-text">한국 교역항만</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="분석 정보">
+          <div class="panel-topline">
+            <span class="panel-kicker">ANALYSIS OVERVIEW</span>
+            <span class="panel-index">01 / 03</span>
+          </div>
+          <div class="panel-title-row">
+            <div>
+              <p class="panel-label">검역 자원 배분 기준</p>
+              <h2>세 가지 시나리오</h2>
+            </div>
+            <span class="panel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 18V6m0 12h16M8 15l3-4 3 2 5-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="19" cy="6" r="1.5" fill="currentColor" />
+              </svg>
+            </span>
+          </div>
+          <div class="mini-scenarios" aria-hidden="true">
+            <div class="mini-row"><span class="mini-number">01</span><span class="mini-line mini-line--long"></span><span class="mini-symbol">√V · R</span></div>
+            <div class="mini-row"><span class="mini-number">02</span><span class="mini-line mini-line--medium"></span><span class="mini-symbol">V · R</span></div>
+            <div class="mini-row"><span class="mini-number">03</span><span class="mini-line mini-line--short"></span><span class="mini-symbol">V · √R</span></div>
+          </div>
+          <div class="panel-foot">
+            <span class="pulse-mark" aria-hidden="true"></span>
+            <span>시나리오를 선택해 배분 관점을 비교하세요</span>
+          </div>
+        </aside>
+
+        <div class="hero-decoration hero-decoration--one" aria-hidden="true"></div>
+        <div class="hero-decoration hero-decoration--two" aria-hidden="true"></div>
+      </section>
+
+      <section class="scenario-section section-wrap" id="scenarios" aria-labelledby="scenario-heading">
+        <div class="section-heading-row">
+          <div>
+            <p class="section-kicker">ALLOCATION SCENARIOS</p>
+            <h2 class="section-heading" id="scenario-heading">검역 자원 배분 시나리오</h2>
+            <p class="section-subtitle">같은 분석 사례에 서로 다른 우선순위를 적용합니다.</p>
+          </div>
+          <div class="scenario-context">
+            <span class="context-label">선택된 분석 시점</span>
+            <span class="context-value"><span class="calendar-icon" aria-hidden="true">▦</span> 2021.05</span>
+          </div>
+        </div>
+
+        <div class="scenario-grid" role="group" aria-label="검역 자원 배분 시나리오 선택">
+          <button class="scenario-card scenario-card--ecology" type="button" data-scenario="ecology" aria-pressed="false">
+            <span class="scenario-card-top">
+              <span class="scenario-number">4-1</span>
+              <span class="scenario-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="m4.5 10 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </span>
+            <span class="scenario-name">생태위험 우선</span>
+            <span class="scenario-summary">외래종 위험도 변화에 더 민감한 관점</span>
+            <span class="scenario-formula"><span class="formula-var">√V</span><span class="formula-times">×</span><span class="formula-var formula-var--risk">R</span></span>
+            <span class="scenario-foot"><span>물동량 영향 완화</span><span>01</span></span>
+          </button>
+
+          <button class="scenario-card scenario-card--balanced is-selected" type="button" data-scenario="balanced" aria-pressed="true">
+            <span class="scenario-card-top">
+              <span class="scenario-number">4-2</span>
+              <span class="scenario-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="m4.5 10 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </span>
+            <span class="scenario-name">균형형</span>
+            <span class="scenario-summary">물동량과 외래종 위험도를 함께 반영</span>
+            <span class="scenario-formula"><span class="formula-var">V</span><span class="formula-times">×</span><span class="formula-var formula-var--risk">R</span></span>
+            <span class="scenario-foot"><span>두 요소 동일 지수</span><span>02</span></span>
+          </button>
+
+          <button class="scenario-card scenario-card--volume" type="button" data-scenario="volume" aria-pressed="false">
+            <span class="scenario-card-top">
+              <span class="scenario-number">4-3</span>
+              <span class="scenario-check" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="m4.5 10 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </span>
+            <span class="scenario-name">물동량 우선</span>
+            <span class="scenario-summary">공컨테이너 물동량 변화에 더 민감한 관점</span>
+            <span class="scenario-formula"><span class="formula-var">V</span><span class="formula-times">×</span><span class="formula-var formula-var--risk">√R</span></span>
+            <span class="scenario-foot"><span>위험도 영향 완화</span><span>03</span></span>
+          </button>
+        </div>
+
+        <div class="scenario-detail" aria-live="polite">
+          <div class="detail-indicator"><span class="detail-indicator-dot"></span><span>선택한 시나리오</span></div>
+          <div class="detail-main">
+            <strong id="selected-scenario-name">균형형</strong>
+            <span class="detail-separator" aria-hidden="true"></span>
+            <span class="detail-formula" id="selected-scenario-formula">V × R</span>
+          </div>
+          <p class="detail-description" id="selected-scenario-description">물동량과 외래종 위험도를 같은 지수로 반영합니다.</p>
+          <div class="variable-legend">
+            <span><i class="legend-symbol legend-symbol--volume">V</i> 정규화 공컨테이너 TEU</span>
+            <span><i class="legend-symbol legend-symbol--risk">R</i> 외래종 상대 위험도</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Research-background layout is intentionally empty until the user supplies copy and imagery. -->
+      <section class="research-section section-wrap" aria-label="연구 배경 콘텐츠 영역">
+        <div class="research-frame">
+          <div class="research-image-slot" aria-hidden="true"></div>
+          <div class="research-copy-slot" aria-hidden="true">
+            <div class="copy-line copy-line--short"></div>
+            <div class="copy-line copy-line--long"></div>
+            <div class="copy-line copy-line--long"></div>
+            <div class="copy-line copy-line--medium"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand">INCHEON PORT <i>·</i> BIOSECURITY</span>
+        <span class="footer-note">항만별 검역 자원 배분 시나리오</span>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
