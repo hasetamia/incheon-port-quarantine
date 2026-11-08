@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f7fa" />
+    <meta name="description" content="선택한 검역자원 배분 시나리오의 결과 화면 검토안" />
+    <title>시나리오 분석 | 인천항 검역 시스템</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="proposal.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <header class="site-header">
+      <div class="header-inner results-header">
+        <a class="brand" href="index.html" aria-label="인천항 검역 시스템 첫 화면">
+          <img src="incheon_port_logo.png" alt="인천항만공사 로고" />
+          <span class="brand-divider" aria-hidden="true"></span>
+          <span class="brand-title">인천항 검역 시스템</span>
+        </a>
+        <a class="results-header-link" href="index.html">입력 화면으로</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="results-page section-wrap" aria-labelledby="results-title">
+        <a class="back-link" href="index.html"><span aria-hidden="true">←</span> 항만과 시나리오 선택으로 돌아가기</a>
+        <div class="results-heading">
+          <p class="section-kicker">QUARANTINE RESOURCE ALLOCATION</p>
+          <p class="results-step" id="results-step">3-1</p>
+          <h1 id="results-title">생태위협 우선</h1>
+          <p class="results-subtitle">선택한 분석 조건과 검역자원 배분 시나리오</p>
+        </div>
+
+        <section class="input-summary-card" aria-label="선택한 분석 조건">
+          <div class="input-summary-item">
+            <span>분석 시점</span>
+            <strong id="result-period">-</strong>
+          </div>
+          <div class="input-summary-item">
+            <span>항만</span>
+            <strong id="result-port">-</strong>
+          </div>
+          <div class="input-summary-item">
+            <span>국가</span>
+            <strong id="result-country">-</strong>
+          </div>
+          <div class="input-summary-item">
+            <span>월별 물동량</span>
+            <strong id="result-volume">-</strong>
+          </div>
+        </section>
+
+        <section class="results-layout" aria-label="시나리오별 배분 화면">
+          <nav class="scenario-tabs" aria-label="시나리오 화면">
+            <p class="scenario-tabs-label">시나리오</p>
+            <button class="scenario-tab" type="button" data-scenario="ecology" aria-pressed="false">
+              <span>3-1</span><strong>생태위협 우선</strong><b aria-hidden="true">→</b>
+            </button>
+            <button class="scenario-tab" type="button" data-scenario="balanced" aria-pressed="false">
+              <span>3-2</span><strong>균형형</strong><b aria-hidden="true">→</b>
+            </button>
+            <button class="scenario-tab" type="button" data-scenario="volume" aria-pressed="false">
+              <span>3-3</span><strong>물동량 우선</strong><b aria-hidden="true">→</b>
+            </button>
+            <a class="edit-input-link" href="index.html">입력 조건 수정</a>
+          </nav>
+
+          <section class="allocation-card" aria-labelledby="allocation-heading">
+            <div class="allocation-card-heading">
+              <div>
+                <p class="panel-label">6 · 검역자원 배분</p>
+                <h2 id="allocation-heading">배분 그래프 예시</h2>
+              </div>
+              <span class="allocation-status">화면 구성 예시</span>
+            </div>
+            <p class="scenario-explanation" id="scenario-explanation"></p>
+            <div class="chart-note">
+              <span class="note-icon" aria-hidden="true">i</span>
+              실제 계산 결과가 아닙니다. 막대 길이는 화면 검토를 위한 임의 예시값입니다.
+            </div>
+            <div class="allocation-chart-wrap" id="allocation-chart" role="img" aria-label="실제 산출값이 아닌 배분 그래프 예시"></div>
+            <div class="chart-legend">
+              <span><i class="legend-swatch legend-swatch--selected"></i>선택 항만 예시</span>
+              <span><i class="legend-swatch legend-swatch--other"></i>비교 항만 예시</span>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand">INCHEON PORT <i>·</i> BIOSECURITY</span>
+        <span class="footer-note">항만별 검역 자원 배분 시나리오</span>
+      </div>
+    </footer>
+    <script src="config.js"></script>
+    <script src="ports.js"></script>
+    <script src="results.js"></script>
+  </body>
+</html>
+
