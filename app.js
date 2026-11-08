@@ -50,7 +50,14 @@ document.querySelectorAll(".dropdown-menu a").forEach((link) => {
   });
 });
 
-const { yearRange, volumeRange, countryNames } = window.APP_CONFIG;
+const countryNames = {
+  AE: "아랍에미리트", AU: "호주", BD: "방글라데시", BJ: "베냉", BN: "브루나이",
+  CN: "중국", EG: "이집트", ES: "스페인", GH: "가나", HK: "홍콩",
+  ID: "인도네시아", IN: "인도", IR: "이란", JP: "일본", KH: "캄보디아",
+  KR: "대한민국", LY: "리비아", MM: "미얀마", MY: "말레이시아", NG: "나이지리아",
+  OM: "오만", PH: "필리핀", RU: "러시아", SG: "싱가포르", TG: "토고",
+  TH: "태국", TW: "대만", US: "미국", VN: "베트남", ZA: "남아프리카공화국"
+};
 
 const state = { year: null, month: null, port: null, scenario: null };
 const yearToggle = document.getElementById("year-toggle");
@@ -72,13 +79,7 @@ const countryFilter = document.getElementById("country-filter");
 const portSearch = document.getElementById("port-search");
 const portSuggestions = document.getElementById("port-suggestions");
 const portCount = document.getElementById("port-count");
-volumeInput.min = String(volumeRange.min);
-volumeInput.max = String(volumeRange.max);
-document.querySelector(".volume-field small").textContent = `${volumeRange.min.toLocaleString("ko-KR")}~${volumeRange.max.toLocaleString("ko-KR")} TEU`;
-
-const years = Array.from({
-  length: yearRange.max - yearRange.min + 1
-}, (_, index) => yearRange.min + index);
+const years = Array.from({ length: 17 }, (_, index) => 2010 + index);
 
 function countryLabel(code) {
   return countryNames[code] || code || "국가 선택 전";
@@ -173,7 +174,7 @@ scenarioButtons.forEach((button) => {
 function getVolume() {
   if (volumeInput.value.trim() === "") return null;
   const value = Number(volumeInput.value);
-  if (!Number.isInteger(value) || value < volumeRange.min || value > volumeRange.max) return null;
+  if (!Number.isInteger(value) || value < 0 || value > 100000) return null;
   return value;
 }
 
@@ -273,11 +274,11 @@ portSearch.addEventListener("input", () => {
 
 volumeInput.addEventListener("input", () => {
   const invalid = volumeInput.value !== "" && getVolume() === null;
-  volumeInput.setCustomValidity(invalid ? `물동량은 ${volumeRange.min.toLocaleString("ko-KR")}에서 ${volumeRange.max.toLocaleString("ko-KR")} 사이의 정수로 입력해 주세요.` : "");
+  volumeInput.setCustomValidity(invalid ? "물동량은 0에서 100,000 사이의 정수로 입력해 주세요." : "");
   updateAnalysisState();
   if (invalid) {
     analysisFeedback.classList.add("is-error");
-    analysisFeedback.textContent = `물동량은 ${volumeRange.min.toLocaleString("ko-KR")}~${volumeRange.max.toLocaleString("ko-KR")} TEU 사이의 값으로 입력하세요.`;
+    analysisFeedback.textContent = "물동량은 0~100,000 TEU 사이의 값으로 입력하세요.";
   }
 });
 
@@ -379,6 +380,3 @@ populatePortControls();
 renderYearOptions();
 updateDateDisplay();
 initializeMap();
-
-
-

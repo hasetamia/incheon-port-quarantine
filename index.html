@@ -150,10 +150,10 @@
             <div class="volume-field">
               <label class="field-label" for="volume-input">월별 공컨테이너 물동량</label>
               <div class="volume-input-wrap">
-                <input id="volume-input" type="number" step="1" inputmode="numeric" placeholder="예: 12,450" />
+                <input id="volume-input" type="number" min="0" max="100000" step="1" inputmode="numeric" placeholder="예: 12,450" />
                 <span>TEU</span>
               </div>
-              <small>허용 범위는 설정에서 불러옵니다</small>
+              <small>0~100,000 TEU</small>
             </div>
           </div>
         </section>
@@ -229,10 +229,7 @@
     </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="config.js"></script>
     <script src="ports.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
-
-

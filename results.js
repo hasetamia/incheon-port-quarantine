@@ -1,4 +1,35 @@
-const { yearRange, volumeRange, countryNames, scenarios } = window.APP_CONFIG;
+const resultCountryNames = {
+  AE: "아랍에미리트", AU: "호주", BD: "방글라데시", BJ: "베냉", BN: "브루나이",
+  CN: "중국", EG: "이집트", ES: "스페인", GH: "가나", HK: "홍콩",
+  ID: "인도네시아", IN: "인도", IR: "이란", JP: "일본", KH: "캄보디아",
+  KR: "대한민국", LY: "리비아", MM: "미얀마", MY: "말레이시아", NG: "나이지리아",
+  OM: "오만", PH: "필리핀", RU: "러시아", SG: "싱가포르", TG: "토고",
+  TH: "태국", TW: "대만", US: "미국", VN: "베트남", ZA: "남아프리카공화국"
+};
+
+const scenarios = [
+  {
+    id: "ecology",
+    step: "3-1",
+    name: "생태위협 우선",
+    description: "외래종 위험을 상대적으로 우선 반영하는 시나리오입니다.",
+    exampleBars: [76, 55, 38, 23]
+  },
+  {
+    id: "balanced",
+    step: "3-2",
+    name: "균형형",
+    description: "생태위협과 물동량을 균형 있게 반영하는 시나리오입니다.",
+    exampleBars: [63, 52, 41, 30]
+  },
+  {
+    id: "volume",
+    step: "3-3",
+    name: "물동량 우선",
+    description: "물동량을 상대적으로 우선 반영하는 시나리오입니다.",
+    exampleBars: [52, 65, 44, 34]
+  }
+];
 
 const params = new URLSearchParams(window.location.search);
 const selectedPortId = params.get("port");
@@ -101,14 +132,14 @@ function activateScenario(id) {
   drawExampleChart(scenario);
 }
 
-const yearValid = Number.isInteger(selectedYear) && selectedYear >= yearRange.min && selectedYear <= yearRange.max;
+const yearValid = Number.isInteger(selectedYear) && selectedYear >= 2010 && selectedYear <= 2026;
 const monthValid = Number.isInteger(selectedMonth) && selectedMonth >= 1 && selectedMonth <= 12;
-const volumeValid = Number.isFinite(selectedVolume) && Number.isInteger(selectedVolume) && selectedVolume >= volumeRange.min && selectedVolume <= volumeRange.max;
+const volumeValid = Number.isFinite(selectedVolume) && selectedVolume >= 0 && selectedVolume <= 100000;
 
 resultPeriod.textContent = yearValid && monthValid ? selectedYear + "년 " + selectedMonth + "월" : "선택 정보 없음";
 resultPort.textContent = textForPort(selectedPort);
 resultCountry.textContent = selectedPort
-  ? (countryNames[selectedPort.country] || selectedPort.country)
+  ? (resultCountryNames[selectedPort.country] || selectedPort.country)
   : "국가 정보 없음";
 resultVolume.textContent = volumeValid ? selectedVolume.toLocaleString("ko-KR") + " TEU" : "입력 정보 없음";
 
@@ -117,4 +148,3 @@ scenarioTabs.forEach((button) => {
 });
 
 activateScenario(selectedScenario);
-
