@@ -39,7 +39,7 @@ const selectedScenario = scenarios.some((scenario) => scenario.id === params.get
   ? params.get("scenario")
   : "ecology";
 
-const resultStep = document.getElementById("results-step");
+const resultTitle = document.getElementById("results-title");
 const resultExplanation = document.getElementById("scenario-explanation");
 const resultPeriod = document.getElementById("result-period");
 const resultPort = document.getElementById("result-port");

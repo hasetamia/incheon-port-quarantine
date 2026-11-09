@@ -219,6 +219,26 @@ function clearPortSelection() {
 
 const records = Array.isArray(window.PORT_DATA) ? window.PORT_DATA : [];
 
+function availablePorts() {
+  const country = countryFilter.value;
+  return records.filter((port) => !country || port.country === country);
+}
+
+function renderPortSuggestions() {
+  const ports = availablePorts();
+  portSuggestions.replaceChildren();
+  ports.forEach((port) => {
+    const option = document.createElement("option");
+    option.value = port.en + " (" + port.ko + ")";
+    portSuggestions.append(option);
+  });
+  portCount.textContent = ports.length + "개 항만";
+}
+
+function findAvailablePort(value) {
+  return availablePorts().find((port) => port.en + " (" + port.ko + ")" === value);
+}
+
 function populatePortControls() {
   const countryCodes = Array.from(new Set(records.map((port) => port.country)));
   countryCodes.sort((a, b) => countryLabel(a).localeCompare(countryLabel(b), "ko"));
@@ -228,13 +248,7 @@ function populatePortControls() {
     option.textContent = countryLabel(code);
     countryFilter.append(option);
   });
-
-  records.forEach((port) => {
-    const option = document.createElement("option");
-    option.value = port.en + " (" + port.ko + ")";
-    portSuggestions.append(option);
-  });
-  portCount.textContent = records.length + "개 항만";
+  renderPortSuggestions();
 }
 
 function selectPort(port, shouldZoom = true) {
@@ -244,25 +258,28 @@ function selectPort(port, shouldZoom = true) {
   portSearch.value = port.en + " (" + port.ko + ")";
   selectedPortName.textContent = port.en + " · " + port.ko;
   updateAnalysisState();
+  renderPortSuggestions();
   renderMarkers(false);
   if (shouldZoom && map) map.flyTo([port.lat, port.lon], Math.max(map.getZoom(), 5), { duration: 0.45 });
 }
 
 countryFilter.addEventListener("change", () => {
   if (state.port && countryFilter.value && state.port.country !== countryFilter.value) clearPortSelection();
+  else if (!state.port) portSearch.value = "";
   updateCountryDisplay();
+  renderPortSuggestions();
   renderMarkers(true);
 });
 
 portSearch.addEventListener("change", () => {
   const value = portSearch.value.trim();
-  const match = records.find((port) => port.en + " (" + port.ko + ")" === value);
+  const match = findAvailablePort(value);
   if (match) selectPort(match);
 });
 
 portSearch.addEventListener("input", () => {
   const value = portSearch.value.trim();
-  const match = records.find((port) => port.en + " (" + port.ko + ")" === value);
+  const match = findAvailablePort(value);
   if (match) selectPort(match);
   else if (state.port && value !== state.port.en + " (" + state.port.ko + ")") {
     const searchValue = portSearch.value;
@@ -291,7 +308,9 @@ analyzeButton.addEventListener("click", () => {
   destination.searchParams.set("port", state.port.id);
   destination.searchParams.set("volume", String(volume));
   destination.searchParams.set("scenario", state.scenario);
-  window.location.assign(destination.toString());
+  const opened = window.open(destination.toString(), "_blank");
+  if (opened) opened.opener = null;
+  else window.location.assign(destination.toString());
 });
 
 let map = null;
@@ -314,7 +333,7 @@ function renderMarkers(fitToCountry) {
   markerLayer.clearLayers();
   markersById.clear();
   const filter = countryFilter.value;
-  const visible = records.filter((port) => !filter || port.country === filter);
+  const visible = availablePorts();
   visible.forEach((port) => {
     const isSelected = state.port?.id === port.id;
     const marker = L.circleMarker([port.lat, port.lon], markerStyle(port));
@@ -341,7 +360,7 @@ function initializeMap() {
   const fallback = document.getElementById("map-fallback");
   if (!window.L || records.length === 0) {
     fallback.hidden = false;
-    portCount.textContent = records.length ? records.length + "개 항만" : "항만 자료 없음";
+    if (records.length === 0) portCount.textContent = "항만 자료 없음";
     return;
   }
 
@@ -375,6 +394,5 @@ function initializeMap() {
 }
 
 populatePortControls();
-renderYearOptions();
 updateDateDisplay();
 initializeMap();
