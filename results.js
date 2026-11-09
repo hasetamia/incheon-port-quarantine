@@ -10,21 +10,18 @@ const resultCountryNames = {
 const scenarios = [
   {
     id: "ecology",
-    step: "3-1",
     name: "생태위협 우선",
     description: "외래종 위험을 상대적으로 우선 반영하는 시나리오입니다.",
     exampleBars: [76, 55, 38, 23]
   },
   {
     id: "balanced",
-    step: "3-2",
     name: "균형형",
     description: "생태위협과 물동량을 균형 있게 반영하는 시나리오입니다.",
     exampleBars: [63, 52, 41, 30]
   },
   {
     id: "volume",
-    step: "3-3",
     name: "물동량 우선",
     description: "물동량을 상대적으로 우선 반영하는 시나리오입니다.",
     exampleBars: [52, 65, 44, 34]
@@ -43,7 +40,6 @@ const selectedScenario = scenarios.some((scenario) => scenario.id === params.get
   : "ecology";
 
 const resultStep = document.getElementById("results-step");
-const resultTitle = document.getElementById("results-title");
 const resultExplanation = document.getElementById("scenario-explanation");
 const resultPeriod = document.getElementById("result-period");
 const resultPort = document.getElementById("result-port");
@@ -123,7 +119,6 @@ function drawExampleChart(scenario) {
 
 function activateScenario(id) {
   const scenario = scenarios.find((item) => item.id === id) || scenarios[0];
-  resultStep.textContent = scenario.step;
   resultTitle.textContent = scenario.name;
   resultExplanation.textContent = scenario.description;
   scenarioTabs.forEach((button) => {
