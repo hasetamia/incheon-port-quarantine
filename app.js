@@ -291,9 +291,7 @@ analyzeButton.addEventListener("click", () => {
   destination.searchParams.set("port", state.port.id);
   destination.searchParams.set("volume", String(volume));
   destination.searchParams.set("scenario", state.scenario);
-  const opened = window.open(destination.toString(), "_blank");
-  if (opened) opened.opener = null;
-  else window.location.assign(destination.toString());
+  window.location.assign(destination.toString());
 });
 
 let map = null;
