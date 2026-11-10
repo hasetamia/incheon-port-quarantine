@@ -235,10 +235,6 @@ function renderPortSuggestions() {
   portCount.textContent = ports.length + "개 항만";
 }
 
-function findAvailablePort(value) {
-  return availablePorts().find((port) => port.en + " (" + port.ko + ")" === value);
-}
-
 function populatePortControls() {
   const countryCodes = Array.from(new Set(records.map((port) => port.country)));
   countryCodes.sort((a, b) => countryLabel(a).localeCompare(countryLabel(b), "ko"));
@@ -248,6 +244,7 @@ function populatePortControls() {
     option.textContent = countryLabel(code);
     countryFilter.append(option);
   });
+
   renderPortSuggestions();
 }
 
@@ -255,31 +252,30 @@ function selectPort(port, shouldZoom = true) {
   if (state.port?.id !== port.id) volumeInput.value = "";
   state.port = port;
   countryFilter.value = port.country;
+  renderPortSuggestions();
   portSearch.value = port.en + " (" + port.ko + ")";
   selectedPortName.textContent = port.en + " · " + port.ko;
   updateAnalysisState();
-  renderPortSuggestions();
   renderMarkers(false);
   if (shouldZoom && map) map.flyTo([port.lat, port.lon], Math.max(map.getZoom(), 5), { duration: 0.45 });
 }
 
 countryFilter.addEventListener("change", () => {
   if (state.port && countryFilter.value && state.port.country !== countryFilter.value) clearPortSelection();
-  else if (!state.port) portSearch.value = "";
-  updateCountryDisplay();
   renderPortSuggestions();
+  updateCountryDisplay();
   renderMarkers(true);
 });
 
 portSearch.addEventListener("change", () => {
   const value = portSearch.value.trim();
-  const match = findAvailablePort(value);
+  const match = availablePorts().find((port) => port.en + " (" + port.ko + ")" === value);
   if (match) selectPort(match);
 });
 
 portSearch.addEventListener("input", () => {
   const value = portSearch.value.trim();
-  const match = findAvailablePort(value);
+  const match = availablePorts().find((port) => port.en + " (" + port.ko + ")" === value);
   if (match) selectPort(match);
   else if (state.port && value !== state.port.en + " (" + state.port.ko + ")") {
     const searchValue = portSearch.value;
@@ -308,9 +304,7 @@ analyzeButton.addEventListener("click", () => {
   destination.searchParams.set("port", state.port.id);
   destination.searchParams.set("volume", String(volume));
   destination.searchParams.set("scenario", state.scenario);
-  const opened = window.open(destination.toString(), "_blank");
-  if (opened) opened.opener = null;
-  else window.location.assign(destination.toString());
+  window.location.assign(destination.toString());
 });
 
 let map = null;
@@ -332,7 +326,6 @@ function renderMarkers(fitToCountry) {
   if (!map || !markerLayer) return;
   markerLayer.clearLayers();
   markersById.clear();
-  const filter = countryFilter.value;
   const visible = availablePorts();
   visible.forEach((port) => {
     const isSelected = state.port?.id === port.id;
@@ -360,7 +353,7 @@ function initializeMap() {
   const fallback = document.getElementById("map-fallback");
   if (!window.L || records.length === 0) {
     fallback.hidden = false;
-    if (records.length === 0) portCount.textContent = "항만 자료 없음";
+    portCount.textContent = records.length ? records.length + "개 항만" : "항만 자료 없음";
     return;
   }
 
@@ -394,5 +387,6 @@ function initializeMap() {
 }
 
 populatePortControls();
+renderYearOptions();
 updateDateDisplay();
 initializeMap();

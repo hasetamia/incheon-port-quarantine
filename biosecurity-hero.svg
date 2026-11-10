@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" role="img" aria-labelledby="title desc">
+  <title id="title">항만 생물안전 검역 장면</title>
+  <desc id="desc">컨테이너선과 부두를 배경으로 검역자가 표본을 확인하고 있습니다.</desc>
+  <rect width="720" height="440" fill="#edf3f5" />
+  <path d="M0 276 115 244l118 28 126-43 122 36 123-29 116 36v168H0Z" fill="#dce8e9" />
+  <path d="M0 328c84-17 154-16 230 0s160 16 238 0 164-18 252 0v112H0Z" fill="#bfd8dc" />
+  <path d="M0 360c92-15 161-12 245 2s166 11 245-2 155-12 230 0v80H0Z" fill="#a9ccd1" />
+
+  <g fill="none" stroke="#5c7890" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+    <path d="M72 284V83h133M130 83v201M72 106l58 65 70 77M59 284h153" />
+    <path d="M220 284V110h105M269 110v174M220 133l49 55 56 69M208 284h126" />
+    <path d="M345 281V70h115M400 70v211M345 94l55 61 62 79M332 281h139" />
+  </g>
+
+  <g stroke="#fff" stroke-width="2">
+    <rect x="55" y="250" width="84" height="48" rx="3" fill="#316db2" />
+    <rect x="143" y="226" width="86" height="72" rx="3" fill="#168f96" />
+    <rect x="233" y="244" width="82" height="54" rx="3" fill="#5778b8" />
+    <rect x="320" y="220" width="84" height="78" rx="3" fill="#316db2" />
+    <rect x="88" y="198" width="82" height="48" rx="3" fill="#5778b8" />
+    <rect x="174" y="174" width="82" height="48" rx="3" fill="#168f96" />
+    <rect x="261" y="192" width="82" height="48" rx="3" fill="#316db2" />
+    <rect x="348" y="168" width="82" height="48" rx="3" fill="#5778b8" />
+  </g>
+  <g stroke="#fff" stroke-opacity=".42" stroke-width="2">
+    <path d="M75 254v40m14-40v40m14-40v40m14-40v40M162 230v64m14-64v64m14-64v64m14-64v64M253 248v46m14-46v46m14-46v46m14-46v46M340 224v70m14-70v70m14-70v70m14-70v70" />
+  </g>
+
+  <path d="M35 303h390l-42 51H75Z" fill="#203b5c" />
+  <path d="M66 354h308l-20 12H83Z" fill="#792a48" />
+  <rect x="93" y="307" width="74" height="25" rx="2" fill="#f5f7f8" />
+  <path d="M108 320h45" stroke="#b7c8d0" stroke-width="3" />
+  <path d="M0 378c84-13 137-9 209 1m34 0c80-12 142-11 222 1m35-1c72-10 133-8 220 1" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3" />
+
+  <g stroke="#203b5c" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+    <path d="M526 335v40m47-40v40" />
+    <path d="M516 375h21m29 0h21" />
+  </g>
+  <path d="M523 273c4-18 18-28 34-28s31 10 35 28l-8 64h-55Z" fill="#fff" stroke="#203b5c" stroke-width="5" />
+  <path d="M521 292h65l-4 24h-58Z" fill="#168f96" />
+  <path d="M526 263c1-16 12-27 31-27 18 0 30 11 31 27h-62Z" fill="#316db2" />
+  <path d="M522 264h70" stroke="#203b5c" stroke-width="5" stroke-linecap="round" />
+  <circle cx="557" cy="278" r="3" fill="#203b5c" />
+  <path d="M555 293v36" stroke="#203b5c" stroke-width="4" />
+  <path d="M526 307c-16 1-25-5-33-18" fill="none" stroke="#203b5c" stroke-width="5" stroke-linecap="round" />
+
+  <path d="M492 289 467 271" stroke="#203b5c" stroke-width="8" stroke-linecap="round" />
+  <circle cx="452" cy="260" r="43" fill="#f8fbfb" stroke="#792a48" stroke-width="7" />
+  <circle cx="452" cy="260" r="34" fill="#fff" />
+  <path d="M478 290 502 314" stroke="#792a48" stroke-width="10" stroke-linecap="round" />
+  <g fill="#792a48" stroke="#792a48" stroke-linecap="round" stroke-width="3">
+    <ellipse cx="451" cy="258" rx="6" ry="15" />
+    <ellipse cx="442" cy="252" rx="7" ry="10" transform="rotate(-32 442 252)" />
+    <ellipse cx="460" cy="252" rx="7" ry="10" transform="rotate(32 460 252)" />
+    <circle cx="451" cy="239" r="5" />
+    <path d="m446 250-12-7m27 7 12-7m-27 17-12 8m27-8 12 8m-25-23-5-9m12 9 5-9" fill="none" />
+  </g>
+  <path d="M446 235c-3-6-7-8-10-8m20 8c3-6 7-8 10-8" fill="none" stroke="#792a48" stroke-linecap="round" stroke-width="2" />
+  <rect x="611" y="292" width="56" height="52" rx="8" fill="#fff" stroke="#cbd9df" stroke-width="2" />
+  <path d="M625 309h28m-28 10h20m-20 10h24" stroke="#168f96" stroke-linecap="round" stroke-width="3" />
+</svg>
