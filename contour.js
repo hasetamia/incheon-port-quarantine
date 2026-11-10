@@ -1,6 +1,5 @@
 (() => {
   const canvas = document.querySelector(".contour-map__canvas");
-  const pointer = document.querySelector(".contour-map__pointer");
   const ctx = canvas?.getContext("2d");
   if (!canvas || !ctx) return;
 
@@ -10,6 +9,8 @@
     8: [["T", "L"]], 9: [["T", "B"]], 10: [["T", "R"], ["L", "B"]],
     11: [["T", "R"]], 12: [["L", "R"]], 13: [["B", "R"]], 14: [["L", "B"]]
   };
+  const cursor = { x: .72, y: .34 };
+  let frame = 0;
 
   function drawContours() {
     const { width, height } = canvas.getBoundingClientRect();
@@ -32,11 +33,14 @@
         const x = column / (columns - 1);
         const y = row / (rows - 1);
         let value = .38 * Math.sin(x * 13 + y * 4) + .34 * Math.cos(y * 12 - x * 5) + .2 * Math.sin((x + y) * 19);
-        peaks.forEach(([px, py, heightScale, sx, sy]) => {
+        peaks.forEach(([px, py, scale, sx, sy]) => {
           const ox = (x - px) / sx;
           const oy = (y - py) / sy;
-          value += heightScale * Math.exp(-.5 * (ox * ox + oy * oy));
+          value += scale * Math.exp(-.5 * (ox * ox + oy * oy));
         });
+        const ox = (x - cursor.x) / .15;
+        const oy = (y - cursor.y) / .2;
+        value += .9 * Math.exp(-.5 * (ox * ox + oy * oy));
         values[row * columns + column] = value;
       }
     }
@@ -73,22 +77,26 @@
         }
       }
       const major = levelIndex % 5 === 0;
-      ctx.strokeStyle = major ? "rgba(30,100,200,.62)" : "rgba(50,120,210,.30)";
+      ctx.strokeStyle = major ? "rgba(30,100,200,.48)" : "rgba(50,120,210,.22)";
       ctx.lineWidth = major ? 1.35 : .8;
       ctx.stroke();
     }
   }
 
-  let resizeFrame = 0;
-  window.addEventListener("resize", () => {
-    cancelAnimationFrame(resizeFrame);
-    resizeFrame = requestAnimationFrame(drawContours);
-  }, { passive: true });
-  window.addEventListener("pointermove", (event) => {
-    if (pointer && event.pointerType !== "touch") {
-      pointer.style.transform = `translate3d(${event.clientX + 10}px, ${event.clientY + 10}px, 0)`;
-    }
-  }, { passive: true });
+  function scheduleDraw() {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      drawContours();
+    });
+  }
 
+  window.addEventListener("resize", scheduleDraw, { passive: true });
+  window.addEventListener("pointermove", (event) => {
+    const bounds = canvas.getBoundingClientRect();
+    cursor.x = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width));
+    cursor.y = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height));
+    scheduleDraw();
+  }, { passive: true });
   drawContours();
 })();

@@ -1,20 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1800" width="1440" height="1800" role="img" aria-labelledby="cube-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="180 320 1080 1200" width="1080" height="1200" role="img" aria-labelledby="cube-title">
   <title id="cube-title">KOREA PORT APSL LOCIS</title>
-  <rect width="1440" height="1800" fill="#101113" />
   <g transform="translate(0 15)" font-family="Helvetica Neue, Arial, sans-serif" aria-hidden="true">
-    <g transform="matrix(.8660254 -.5 .8660254 .5 220 655)" fill="#7A1F3D" font-weight="700">
+    <g transform="matrix(.8660254 -.5 .8660254 .5 220 655)" fill="#A54158" font-weight="700">
       <text x="14" y="125" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">KOREA</text>
       <text x="14" y="262" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">PORT</text>
       <text x="14" y="399" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">APSL</text>
       <text x="14" y="536" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">LOCIS</text>
     </g>
-    <g transform="matrix(.8660254 .5 0 1 220 655)" fill="#316DB2" font-weight="300">
+    <g transform="matrix(.8660254 .5 0 1 220 655)" fill="#3F72B3" font-weight="300">
       <text x="14" y="125" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">KOREA</text>
       <text x="14" y="262" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">PORT</text>
       <text x="14" y="399" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">APSL</text>
       <text x="14" y="536" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">LOCIS</text>
     </g>
-    <g transform="matrix(.8660254 -.5 0 1 720 943.6751)" fill="#FFFFFF" font-weight="700">
+    <g transform="matrix(.8660254 -.5 0 1 720 943.6751)" fill="#8394AE" font-weight="700">
       <text x="14" y="125" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">KOREA</text>
       <text x="14" y="262" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">PORT</text>
       <text x="14" y="399" font-size="158" textLength="549.3503" lengthAdjust="spacingAndGlyphs">APSL</text>
