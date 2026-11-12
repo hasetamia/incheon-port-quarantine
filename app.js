@@ -168,13 +168,16 @@ function selectPort(id) {
 function suitabilityFor(date) {
   if (window.QUARANTINE_S?.[date]) return Promise.resolve(window.QUARANTINE_S[date]);
   if (!R.months[date]) return Promise.resolve(null);
-  if (!suitabilityLoads.has(date)) suitabilityLoads.set(date, new Promise((resolve, reject) => {
-    const script = document.createElement('script'); script.src = `data/suitability/${date}.js`;
-    script.onload = () => resolve(window.QUARANTINE_S?.[date] || null);
-    script.onerror = () => { suitabilityLoads.delete(date); script.remove(); reject(new Error('서식 적합도 파일을 읽지 못했습니다.')); };
+  const [year, month] = date.split('-');
+  const quarter = `${year}-Q${Math.ceil(Number(month) / 3)}`;
+  if (!suitabilityLoads.has(quarter)) suitabilityLoads.set(quarter, new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = `data/suitability/${quarter}.js`;
+    script.onload = () => resolve();
+    script.onerror = () => { suitabilityLoads.delete(quarter); script.remove(); reject(new Error('서식 적합도 파일을 읽지 못했습니다.')); };
     document.head.append(script);
   }));
-  return suitabilityLoads.get(date);
+  return suitabilityLoads.get(quarter).then(() => window.QUARANTINE_S?.[date] || null);
 }
 async function renderSpecies(item) {
   const climateDate = M.shiftMonth(item.period, -12);

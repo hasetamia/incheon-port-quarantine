@@ -15,7 +15,23 @@
 }
 
 * { box-sizing: border-box; }
-body { display: flex; flex-direction: column; min-height: 100vh; margin: 0; min-width: 320px; background: #f4f6f9; color: var(--ink); font-size: 14px; line-height: 1.5; }
+body { display: flex; flex-direction: column; min-height: 100vh; margin: 0; min-width: 320px; isolation: isolate; background: #f4f6f9; color: var(--ink); font-size: 14px; line-height: 1.5; }
+.contour-map__canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: .64;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, .28), #000 78%);
+}
+@media (max-width: 600px) {
+  .contour-map__canvas {
+    opacity: .54;
+    mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, .28) 76%);
+  }
+}
 button, input, select { font: inherit; }
 button { color: inherit; }
 .skip-link { position: absolute; z-index: 10; top: -48px; left: 12px; padding: 8px 12px; background: #fff; }

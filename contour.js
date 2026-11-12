@@ -10,6 +10,7 @@
     11: [["T", "R"]], 12: [["L", "R"]], 13: [["B", "R"]], 14: [["L", "B"]]
   };
   const cursor = { x: .72, y: .34 };
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let frame = 0;
 
   function drawContours() {
@@ -93,6 +94,7 @@
 
   window.addEventListener("resize", scheduleDraw, { passive: true });
   window.addEventListener("pointermove", (event) => {
+    if (reducedMotion.matches || event.pointerType === "touch") return;
     const bounds = canvas.getBoundingClientRect();
     cursor.x = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width));
     cursor.y = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height));
