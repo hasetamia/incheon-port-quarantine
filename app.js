@@ -73,7 +73,7 @@ function applyUpload() {
   state.selected = ''; tabs[1].disabled = false; renderOperations(); showView('operations-view');
 }
 async function loadWorkbook(file) {
-  if (!window.XLSX) throw new Error('엑셀 읽기 파일을 찾지 못했습니다. vendor 폴더를 확인해 주세요.');
+  if (!window.XLSX) throw new Error('엑셀 처리 파일(xlsx.full.min.js)을 불러오지 못했습니다.');
   if (file.size > 20 * 1024 * 1024) throw new Error('20MB 이하 파일을 선택해 주세요.');
   if (!/\.(xlsx|xls|xlsb|csv)$/i.test(file.name)) throw new Error('엑셀 또는 CSV 파일을 선택해 주세요.');
   setFeedback('파일을 읽고 있습니다…');
@@ -172,7 +172,7 @@ function suitabilityFor(date) {
   const quarter = `${year}-Q${Math.ceil(Number(month) / 3)}`;
   if (!suitabilityLoads.has(quarter)) suitabilityLoads.set(quarter, new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = `data/suitability/${quarter}.js`;
+    script.src = `${quarter}.js`;
     script.onload = () => resolve();
     script.onerror = () => { suitabilityLoads.delete(quarter); script.remove(); reject(new Error('서식 적합도 파일을 읽지 못했습니다.')); };
     document.head.append(script);
